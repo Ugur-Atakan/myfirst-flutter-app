@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_print
 import 'package:flutter/material.dart';
-import 'package:myapp/myhome_page.dart';
+import 'package:myapp/app.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -10,7 +10,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => ThemeState()),
         ChangeNotifierProvider(create: (_) => CounterState()),
       ],
-      child: const MyApp(),
+      child: const NavigationBarApp(),
     ),
   );
 }
@@ -51,31 +51,5 @@ class CounterState with ChangeNotifier {
     _count = 0;
     print('Counter sıfırlandı' + _count.toString());
     notifyListeners();
-  }
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: const MyHomePage(),
-      theme: ThemeData.light().copyWith(
-        // Varsayılan tema
-        colorScheme: ThemeData.light()
-            .colorScheme
-            .copyWith(background: Color.fromARGB(255, 214, 199, 199)),
-      ),
-      darkTheme: ThemeData.dark().copyWith(
-        // Koyu tema
-        colorScheme: ThemeData.dark().colorScheme.copyWith(
-              background: Colors.black,
-            ),
-      ),
-      themeMode: Provider.of<ThemeState>(context).isDarkMode
-          ? ThemeMode.dark
-          : ThemeMode.light,
-    );
   }
 }
